@@ -3,6 +3,7 @@ import { ExternalLink, Star, Sparkles } from "lucide-react";
 import type { EvaluationResponse } from "../types";
 import { formatConfidence } from "../utils/formatters";
 import ReactMarkdown from "react-markdown";
+import { Citation } from "../types";
 
 interface EvaluationResultsProps {
   evaluation: EvaluationResponse;
@@ -60,7 +61,7 @@ const EvaluationResults: React.FC<EvaluationResultsProps> = ({
 
       <div className="border-t border-gray-100 pt-6">
         <h3 className="text-lg font-medium mb-4">Sources</h3>
-        <div className="grid gap-2">
+        <div className="grid gap-2 w-full">
           {evaluation.citations.map((citation) => (
             <a
               key={citation.index}
@@ -70,9 +71,14 @@ const EvaluationResults: React.FC<EvaluationResultsProps> = ({
               className="flex items-center gap-3 p-3 rounded-xl bg-gray-50 hover:bg-gray-100 transition-colors group"
             >
               <ExternalLink className="w-4 h-4 text-gray-400 group-hover:text-blue-500" />
-              <span className="truncate text-gray-600">
-                [[{citation.index}]] {new URL(citation.url).hostname}
-              </span>
+              <div className="flex items-center gap-2 min-w-0">
+                <span className="flex-shrink-0 w-6 h-6 flex items-center justify-center bg-blue-100 text-blue-600 rounded-full text-sm font-medium">
+                  {citation.index}
+                </span>
+                <span className="truncate text-gray-600">
+                  {new URL(citation.url).hostname}
+                </span>
+              </div>
               <span className="ml-auto text-xs font-medium text-gray-400">
                 {formatConfidence(citation.confidence)}
               </span>

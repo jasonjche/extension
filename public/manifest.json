@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "LinkedIn Profile Evaluator",
+  "name": "Styx: LinkedIn Profile Evaluator",
   "version": "1.0",
   "description": "Evaluate LinkedIn profiles against job descriptions",
   "permissions": [
