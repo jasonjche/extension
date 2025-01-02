@@ -1,0 +1,35 @@
+{
+  "manifest_version": 3,
+  "name": "LinkedIn Profile Evaluator",
+  "version": "1.0",
+  "description": "Evaluate LinkedIn profiles against job descriptions",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage",
+    "background"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.linkedin.com/in/*"
+      ],
+      "js": [
+        "src/contentScript.js"
+      ],
+      "css": [
+        "src/index.css"
+      ]
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "index.css"
+      ],
+      "matches": [
+        "*://*.linkedin.com/*"
+      ]
+    }
+  ]
+}
