@@ -1,9 +1,9 @@
 import React from "react";
-import EvaluationForm from "./EvaluationForm";
-import ExtensionTab from "./ExtensionTab";
-import { useExtensionState } from "../hooks/useExtensionState";
+import { EvaluationForm } from "../EvaluationForm";
+import { ExtensionTab } from "../ExtensionTab";
+import { useExtensionState } from "../../hooks/useExtensionState";
 
-const ExtensionUI: React.FC = () => {
+export const ExtensionUI = () => {
   const { isExpanded, toggleExpansion } = useExtensionState();
 
   return (
@@ -15,10 +15,7 @@ const ExtensionUI: React.FC = () => {
       <div className="flex flex-col">
         <ExtensionTab isExpanded={isExpanded} onToggle={toggleExpansion} />
         {isExpanded && (
-          <div
-            className="overflow-y-auto"
-            style={{ maxHeight: "calc(600px - 4rem)" }}
-          >
+          <div className="overflow-y-auto" style={{ maxHeight: "calc(600px - 4rem)" }}>
             <EvaluationForm />
           </div>
         )}
@@ -26,5 +23,3 @@ const ExtensionUI: React.FC = () => {
     </div>
   );
 };
-
-export default ExtensionUI;

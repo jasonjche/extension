@@ -39,13 +39,13 @@ const EvaluationForm: React.FC = () => {
   };
 
   return (
-    <div className="p-4 space-y-6">
-      <div className="space-y-2">
-        <label className="block text-sm font-medium text-gray-700">
+    <div className="p-6 space-y-8">
+      <div className="space-y-3">
+        <label className="block font-medium text-gray-700">
           Job Description
         </label>
         <textarea
-          className="w-full h-24 px-3 py-2 text-sm border border-gray-200 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+          className="w-full h-32 px-4 py-3 text-base rounded-xl transition-all duration-200"
           value={jobDescription}
           onChange={(e) => setJobDescription(e.target.value)}
           placeholder="Paste job description here (optional)..."
@@ -55,25 +55,25 @@ const EvaluationForm: React.FC = () => {
       <button
         onClick={handleEvaluate}
         disabled={loading}
-        className="w-full flex items-center justify-center px-4 py-2.5 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
+        className="btn-primary w-full flex items-center justify-center px-6 py-3 text-base font-medium text-white rounded-xl disabled:opacity-50 disabled:cursor-not-allowed"
       >
         {loading ? (
           <>
-            <Loader2 className="animate-spin -ml-1 mr-2 h-4 w-4" />
-            Evaluating...
+            <Loader2 className="animate-spin -ml-1 mr-2 h-5 w-5" />
+            Analyzing Profile...
           </>
         ) : (
           <>
-            <Send className="-ml-1 mr-2 h-4 w-4" />
+            <Send className="-ml-1 mr-2 h-5 w-5" />
             Evaluate Profile
           </>
         )}
       </button>
 
       {error && (
-        <div className="rounded-lg bg-red-50 p-4">
+        <div className="rounded-xl bg-red-50 p-4">
           <div className="flex">
-            <AlertCircle className="h-5 w-5 text-red-400" />
+            <AlertCircle className="h-5 w-5 text-red-400 flex-shrink-0" />
             <div className="ml-3">
               <h3 className="text-sm font-medium text-red-800">Error</h3>
               <div className="mt-2 text-sm text-red-700">{error}</div>
@@ -82,7 +82,11 @@ const EvaluationForm: React.FC = () => {
         </div>
       )}
 
-      {evaluation && <EvaluationResults evaluation={evaluation} />}
+      {evaluation && (
+        <div className="evaluation-results">
+          <EvaluationResults evaluation={evaluation} />
+        </div>
+      )}
     </div>
   );
 };
