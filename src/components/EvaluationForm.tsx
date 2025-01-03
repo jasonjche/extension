@@ -3,6 +3,7 @@ import { Loader2, Send, AlertCircle } from "lucide-react";
 import { evaluateProfile } from "../utils/apiUtils";
 import { saveToStorage, loadFromStorage } from "../utils/storage";
 import EvaluationResults from "./EvaluationResults";
+import Section from "./Section";
 import type { EvaluationResponse } from "../types";
 
 const EvaluationForm: React.FC = () => {
@@ -62,17 +63,14 @@ const EvaluationForm: React.FC = () => {
 
   return (
     <div className="p-6 space-y-8">
-      <div className="space-y-3">
-        <label className="block font-medium text-gray-700">
-          Job Description
-        </label>
+      <Section title="Job Description">
         <textarea
           className="w-full h-32 px-4 py-3 text-base rounded-xl transition-all duration-200"
           value={jobDescription}
           onChange={(e) => setJobDescription(e.target.value)}
           placeholder="Paste job description here (optional)..."
         />
-      </div>
+      </Section>
 
       <button
         onClick={handleEvaluate}
@@ -105,9 +103,9 @@ const EvaluationForm: React.FC = () => {
       )}
 
       {evaluation && (
-        <div className="evaluation-results">
+        <Section title="Evaluation Results">
           <EvaluationResults evaluation={evaluation} />
-        </div>
+        </Section>
       )}
     </div>
   );

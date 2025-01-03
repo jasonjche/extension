@@ -17,10 +17,7 @@ const ResultSection: React.FC<ResultSectionProps> = ({
   processContent,
 }) => (
   <div className="result-card rounded-xl p-5">
-    <button 
-      onClick={onToggle}
-      className="w-full flex items-center gap-3 mb-4"
-    >
+    <button onClick={onToggle} className="w-full flex items-center gap-3 mb-4">
       {section.score >= 8 ? (
         <Sparkles className="w-5 h-5 text-yellow-400 flex-shrink-0" />
       ) : section.score > 5 ? (
@@ -37,7 +34,7 @@ const ResultSection: React.FC<ResultSectionProps> = ({
           />
         </div>
         <span className="text-sm font-medium text-gray-500 w-12">
-          {section.score}/10
+          {Math.round(section.score)}/10
         </span>
         {isOpen ? (
           <ChevronUp className="w-5 h-5 text-gray-400" />

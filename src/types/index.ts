@@ -8,6 +8,7 @@ export interface Citation {
   index: number;
   url: string;
   confidence: number;
+  distilled_content: string;
 }
 
 export interface EvaluationResponse {

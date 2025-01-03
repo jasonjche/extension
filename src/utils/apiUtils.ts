@@ -1,5 +1,5 @@
 import type { EvaluationResponse } from "../types";
-import { scrapeProfile } from "./profileScraper";
+// import { scrapeProfile } from "./profileScraper";
 
 export const evaluateProfile = async (
   jobDescription: string,

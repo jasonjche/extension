@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import type { EvaluationResponse } from "../types";
+import type { EvaluationResponse, Citation } from "../types";
 import ResultSection from "./ResultSection";
 import SourceItem from "./SourceItem";
+import Section from "./Section";
 
 interface EvaluationResultsProps {
   evaluation: EvaluationResponse;
@@ -26,10 +27,8 @@ const EvaluationResults: React.FC<EvaluationResultsProps> = ({
   };
 
   const toggleSection = (index: number) => {
-    setOpenSections(prev => 
-      prev.includes(index) 
-        ? prev.filter(i => i !== index)
-        : [...prev, index]
+    setOpenSections((prev) =>
+      prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]
     );
   };
 
@@ -47,14 +46,13 @@ const EvaluationResults: React.FC<EvaluationResultsProps> = ({
         ))}
       </div>
 
-      <div className="border-t border-gray-100 pt-6">
-        <h2 className="text-xl font-semibold mb-4">Sources</h2>
+      <Section title="Sources" className="border-t border-gray-100 pt-6">
         <div className="grid gap-2 w-full">
           {evaluation.citations.map((citation) => (
             <SourceItem key={citation.index} citation={citation} />
           ))}
         </div>
-      </div>
+      </Section>
     </div>
   );
 };
