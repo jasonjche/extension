@@ -1,4 +1,4 @@
-import type { EvaluationResponse } from '../types';
+import type { EvaluationResponse } from "../types";
 
 interface StorageData {
   jobDescription: string;
@@ -10,9 +10,9 @@ export const saveToStorage = async (data: Partial<StorageData>) => {
 };
 
 export const loadFromStorage = async (): Promise<StorageData> => {
-  const data = await chrome.storage.local.get(['jobDescription', 'evaluation']);
+  const data = await chrome.storage.local.get(["jobDescription", "evaluation"]);
   return {
-    jobDescription: data.jobDescription || '',
+    jobDescription: data.jobDescription || "",
     evaluation: data.evaluation || null,
   };
 };

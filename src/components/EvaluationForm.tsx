@@ -10,6 +10,7 @@ const EvaluationForm: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [evaluation, setEvaluation] = useState<EvaluationResponse | null>(null);
+  const [currentUrl, setCurrentUrl] = useState("");
 
   useEffect(() => {
     const loadState = async () => {
@@ -18,14 +19,35 @@ const EvaluationForm: React.FC = () => {
       setEvaluation(savedState.evaluation);
     };
     loadState();
-  }, []);
+
+    // Initial URL set
+    setCurrentUrl(window.location.href);
+
+    // Create URL observer
+    const observer = new MutationObserver(() => {
+      const newUrl = window.location.href;
+      if (newUrl !== currentUrl) {
+        setCurrentUrl(newUrl);
+        setEvaluation(null); // Reset evaluation when URL changes
+      }
+    });
+
+    // Start observing
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+    });
+
+    // Cleanup
+    return () => observer.disconnect();
+  }, [currentUrl]);
 
   const handleEvaluate = async () => {
     setLoading(true);
     setError("");
 
     try {
-      const result = await evaluateProfile(jobDescription);
+      const result = await evaluateProfile(jobDescription, currentUrl);
       setEvaluation(result);
       await saveToStorage({
         jobDescription,
